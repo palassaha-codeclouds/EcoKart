@@ -8,6 +8,10 @@
     font-weight: bold;
 }
 
+.navbar .nav-link:hover {
+    color: #2d6a4f;
+}
+
 .btn-eco {
     background-color: #2d6a4f;
     border-color: var(--eco-green);
@@ -246,7 +250,7 @@
 }
 
 .badge {
-    transform: translate(6px, -60%) !important;
+    transform: translate(9px, -60%) !important;
 }
 
 .footer {
