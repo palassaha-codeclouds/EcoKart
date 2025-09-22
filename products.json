@@ -1,0 +1,112 @@
+{
+    "products": [
+        {
+            "id": 1,
+            "name": "Bamboo Water Bottle",
+            "price": 499,
+            "category": "bottles",
+            "image": "https://miti-life.com/cdn/shop/files/Bottle_1to1-2_ba5be3e9-3907-4ec9-89c5-5ac1cab7024b_2048x.jpg?v=1740223198",
+            "description": "Eco-friendly bamboo water bottle with stainless steel interior. Keeps drinks cold for 24 hours and hot for 12 hours. Perfect for daily hydration while reducing plastic waste.",
+            "featured": false 
+        },
+        {
+            "id": 2,
+            "name": "Organic Cotton Tote Bag",
+            "price": 1599,
+            "category": "bags", 
+            "image": "https://images.pexels.com/photos/8148587/pexels-photo-8148587.jpeg?_gl=1*1i785uc*_ga*Nzk1MjgyNDAzLjE3NTc5OTYxNjU.*_ga_8JE65Q40S6*czE3NTc5OTYxNjUkbzEkZzEkdDE3NTc5OTY2MzQkajUwJGwwJGgw",
+            "description": "Durable organic cotton tote bag perfect for grocery shopping or daily use. Machine washable and designed to last for years, replacing hundreds of plastic bags.",
+            "featured": true
+        },
+        {
+            "id": 3,
+            "name": "Recycled Paper Notebook",
+            "price": 299,
+            "category": "stationery",
+            "image": "https://images.pexels.com/photos/368888/pexels-photo-368888.jpeg?_gl=1*17si6se*_ga*Nzk1MjgyNDAzLjE3NTc5OTYxNjU.*_ga_8JE65Q40S6*czE3NTc5OTYxNjUkbzEkZzEkdDE3NTc5OTY3NDMkajQ2JGwwJGgw",
+            "description": "100% recycled paper notebook with eco-friendly binding. Features 200 pages of smooth writing paper perfect for notes, journaling, or sketching.",
+            "featured": true
+        },
+        {
+            "id": 4,
+            "name": "Bamboo Kitchen Utensil Set",
+            "price": 1999,
+            "category": "kitchen",
+            "image": "https://images.pexels.com/photos/9475305/pexels-photo-9475305.jpeg?_gl=1*19v4qci*_ga*Nzk1MjgyNDAzLjE3NTc5OTYxNjU.*_ga_8JE65Q40S6*czE3NTc5OTYxNjUkbzEkZzEkdDE3NTc5OTY4MDUkajQ5JGwwJGgw",
+            "description": "Complete bamboo kitchen utensil set including spoon, fork, knife, chopsticks, and straw. Comes with a travel pouch for on-the-go meals.",
+            "featured": false
+        },
+        {
+            "id": 5,
+            "name": "Stainless Steel Water Bottle",
+            "price": 999,
+            "category": "bottles",
+            "image": "https://images.pexels.com/photos/7880032/pexels-photo-7880032.jpeg?_gl=1*1wky2jv*_ga*Nzk1MjgyNDAzLjE3NTc5OTYxNjU.*_ga_8JE65Q40S6*czE3NTc5OTYxNjUkbzEkZzEkdDE3NTc5OTYyMzckajYwJGwwJGgw",
+            "description": "Double-walled stainless steel water bottle with vacuum insulation. BPA-free and designed to keep beverages at the perfect temperature all day long.",
+            "featured": false
+        },
+        {
+            "id": 6,
+            "name": "Hemp Messenger Bag",
+            "price": 299,
+            "category": "bags",
+            "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxNUkXDkiF1oGa9njQX8YyMOs3aViBf8XoNg&s",
+            "description": "Stylish and durable hemp messenger bag perfect for work or school. Features multiple compartments and adjustable strap. Naturally antimicrobial and water-resistant.",
+            "featured": false
+        },
+        {
+            "id": 7,
+            "name": "Eco-friendly Ballpoint Pens",
+            "price": 149,
+            "category": "stationery",
+            "image": "https://static1.industrybuying.com/products/office-supplies/pens-pencils-writing-supplies/ball-pens/OFF.BAL.626104433_1715949729863.webp",
+            "description": "Set of 5 biodegradable ballpoint pens made from recycled materials. Smooth writing and perfect for everyday use.",
+            "featured": false
+        },
+        {
+            "id": 8,
+            "name": "Coconut Fiber Scrub Pads",
+            "price": 249,
+            "category": "kitchen",
+            "image": "https://www.decorduniya.com/cdn/shop/files/coir2_6481f56e-5934-4add-8ba1-e840b0214b10.jpg?v=1692194091&width=493",
+            "description": "Pack of 6 natural coconut fiber scrub pads for non-toxic dishwashing. Fully compostable and plastic-free.",
+            "featured": true
+        },
+        {
+            "id": 9,
+            "name": "Glass Reusable Coffee Cup",
+            "price": 799,
+            "category": "bottles",
+            "image": "https://m.media-amazon.com/images/I/61BHzHO-6rL.jpg",
+            "description": "Durable reusable glass coffee cup with silicone grip and lid. Perfect eco-friendly alternative to disposable cups.",
+            "featured": false
+        },
+        {
+            "id": 10,
+            "name": "Jute Sling Bag",
+            "price": 1299,
+            "category": "bags",
+            "image": "https://m.media-amazon.com/images/I/91o1D+6DARL._UY1100_.jpg",
+            "description": "Trendy jute sling bag with adjustable strap. Lightweight, durable, and perfect for casual outings.",
+            "featured": false
+        },
+        {
+            "id": 11,
+            "name": "Eco-friendly Lunch Bag",
+            "price": 1799,
+            "category": "bags",
+            "image": "https://nestasia.in/cdn/shop/products/DSC5929.jpg?v=1666702515&width=600",
+            "description": "Insulated eco-friendly lunch bag made with natural fabrics. Keeps food fresh while being lightweight and reusable, perfect for school, office, or travel.",
+            "featured": false
+        },
+        {
+            "id": 12,
+            "name": "Bamboo Desk Organizer",
+            "price": 899,
+            "category": "stationery",
+            "image": "https://5.imimg.com/data5/SELLER/Default/2022/7/DV/AF/BE/23241110/bamboo-desk-organizer-500x500.jpeg",
+            "description": "Eco-friendly bamboo desk organizer with compartments for pens, notes, and accessories. Perfect for keeping your workspace neat and sustainable.",
+            "featured": false
+        }
+    ]
+}

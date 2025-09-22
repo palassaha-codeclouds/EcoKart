@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EcoKart - Eco-Friendly Products</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold text-success" href="index.html">
+                <i class="fas fa-leaf me-2"></i> EcoKart
+            </a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="checkout.html">
+                            <i class="fas fa-shopping-cart me-">
+                                <span id="cart-badge"
+                                    class="badge bg-success rounded-pill position-absolute top-1/2 end-0 translate-middle p-1">0</span>
+                            </i> Cart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold mb-3">Shop Eco-Friendly Products</h1>
+            <p class="lead">Sustainable choices for a better tomorrow</p>
+            <p class="pt-2">
+                Discover our carefully curated collection of environmentally conscious
+                products
+            </p>
+            <button class="btn btn-eco btn-lg mt-4" onclick="scrollToProducts()">
+                <i class="fas fa-shopping-bag"></i> Shop Now
+            </button>
+        </div>
+    </section>
+
+<!-- Featured Products -->
+    <section id="featured-products-section" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h2 class="mb-3">Featured Products</h2>
+                    <p class="text-muted">
+                        Eco-friendly products for sustainable living
+                    </p>
+                </div>
+            </div>
+            <!-- Loading State -->
+            <div id="featured-loading" class="loading">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p class="mt-2">Loading products...</p>
+            </div>
+            <!-- Products Grid -->
+            <div id="featured-grid" class="row" style="display: none">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+            <!-- Empty State -->
+            <div id="featured-empty-state" class="text-center py-5" style="display: none">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h4>No products found</h4>
+                <p class="text-muted">Try selecting a different category</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products-section" class="py-5">
+        <div class="container">
+            <div class="row mb-4">
+                <div class="col-md-6">
+                    <h2 class="mb-3">Our Products</h2>
+                    <p class="text-muted">
+                        Eco-friendly products for sustainable living
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="d-flex justify-content-end align-items-center">
+                        <label for="category-filter" class="form-label me-2 mb-0">Filter:</label>
+                        <select id="category-filter" class="form-select" style="width: auto"
+                            onchange="filterProducts()">
+                            <option value="all">All Categories</option>
+                            <option value="bottles">Water Bottles</option>
+                            <option value="bags">Bags</option>
+                            <option value="stationery">Stationery</option>
+                            <option value="kitchen">Kitchen</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner fa-spin fa-2x"></i>
+                <p class="mt-2">Loading products...</p>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="row" style="display: none">
+                <!-- Products will be loaded here via JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="empty-state" class="text-center py-5" style="display: none">
+                <i class="fas fa-search fa-3x text-muted mb-3"></i>
+                <h4>No products found</h4>
+                <p class="text-muted">Try selecting a different category</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Us Section -->
+    <section id="about" class="about" class="about-section py-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Content -->
+                <div class="col-md-6 mb-4 mb-md-0">
+                    <h2 class="fw-bold mb-3">About EcoKart</h2>
+                    <p class="text-muted">
+                        At <strong>EcoKart</strong>, we believe small choices create a big
+                        impact. Our mission is to make sustainable living easy and
+                        affordable for everyone. From reusable bottles to eco-friendly
+                        bags and stationery, each product is chosen with the environment
+                        in mind. Together, let’s reduce waste and build a greener
+                        tomorrow.
+                    </p>
+                    <!-- <button class="btn btn-eco mt-3">
+                        <i class="fas fa-leaf"></i> Learn More
+                    </button> -->
+                </div>
+
+                <!-- Right Image -->
+                <div class="right-image col-md-5 text-center">
+                    <img src="assets/about_us.jpg" alt="EcoKart About Us"
+                        class="img-fluid rounded shadow" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="testimonials" class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold">What Our Customers Say</h2>
+                <p class="text-muted">Real stories from people who made the switch to eco-friendly living with EcoKart
+                </p>
+            </div>
+            <div class="row g-4">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4">
+                    <div class="card shadow-lg h-100 border-0 rounded">
+                        <div class="card-body text-center p-4">
+                            <p class="text-muted fst-italic">
+                                “EcoKart has completely changed how I shop. Their eco-friendly products
+                                are not only sustainable but also stylish!”
+                            </p>
+                            <h6 class="fw-bold mt-3">Priya Sharma</h6>
+                            <p class="text-secondary small">Mumbai, India</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 2 -->
+                <div class="col-md-4">
+                    <div class="card shadow-lg h-100 border-0 rounded">
+                        <div class="card-body text-center p-4">
+                            <p class="text-muted fst-italic">
+                                “I love the variety of eco-conscious options. The quality is amazing and I feel good
+                                knowing my choices help the planet.”
+                            </p>
+                            <h6 class="fw-bold mt-3">Arjun Verma</h6>
+                            <p class="text-secondary small">Delhi, India</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Testimonial 3 -->
+                <div class="col-md-4">
+                    <div class="card shadow-lg h-100 border-0 rounded">
+                        <div class="card-body text-center p-4">
+                            <p class="text-muted fst-italic">
+                                “EcoKart’s packaging and delivery are always top-notch. I’ve recommended them
+                                to all my friends and family.”
+                            </p>
+                            <h6 class="fw-bold mt-3">Neha Patel</h6>
+                            <p class="text-secondary small">Bengaluru, India</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Subscribe Section -->
+    <div class="container-fluid subscribe bg-opacity-50 pt-5 pb-5 mt-lg-5 mt-3">
+        <div class="container">
+            <div class="row gx-5 gy-4">
+                <!-- Left Column -->
+                <div class="col-md-6 px-5 d-flex flex-column gap-3">
+                    <div>
+                        <a class="fw-bold text-success fs-4 text-decoration-none">
+                            <i class="fas fa-leaf me-2 fs-3"></i> EcoKart
+                        </a>
+                    </div>
+                    <p class="text-dark">
+                        Rooted in the rhythm of everyday living, our curated collection
+                        transforms the ordinary into an experience of luxury. Each piece is
+                        intentionally selected and timelessly crafted, allowing you to
+                        envision and embrace a life of effortless elegance.
+                    </p>
+                    <div class="d-flex gap-3 fw-medium fs-6 social-links">
+                        <a href="#"><i class="fab fa-facebook-f me-1"></i> Facebook</a>
+                        <a href="#"><i class="fab fa-instagram me-1"></i> Instagram</a>
+                        <a href="#"><i class="fab fa-linkedin-in me-1"></i> LinkedIn</a>
+                    </div>
+                </div>
+
+                <!-- Right Column -->
+                <div class="col-md-6 px-5 d-flex flex-column gap-3 text-md-end text-start">
+                    <h1 class="h4 text-dark">Subscribe Now</h1>
+                    <p class="text-dark">
+                        Subscribe your email for newsletter and featured news based on your
+                        interest
+                    </p>
+                    <form class="d-flex subscription-form justify-content-md-end justify-content-start">
+                        <input type="email" class="form-control rounded-start me-2" placeholder="Enter your email"
+                            style="max-width: 300px;" />
+                        <button type="submit" class="btn btn-eco text-white rounded-end">
+                            SUBMIT
+                        </button>
+                    </form>
+                    <p class="text-secondary">
+                        Be the first to know about new arrivals, special promos, and online
+                        exclusives!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4">
+        <div class="container text-center">
+            <p class="mb-0 text-muted footer">
+                © 2025 EcoKart. Making the world greener, one product at a time.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/index.js"></script>
+</body>
+
+</html>

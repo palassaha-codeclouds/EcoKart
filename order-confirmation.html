@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - EcoKart</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="css/order-confirmation.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+        <div class="container">
+            <!-- Brand -->
+            <a class="navbar-brand fw-bold text-success" href="index.html">
+                <i class="fas fa-leaf me-2"></i> EcoKart
+            </a>
+
+            <!-- Toggler -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative" href="checkout.html">
+                            <i class="fas fa-shopping-cart me-">
+                                <span id="cart-badge"
+                                    class="badge bg-success rounded-pill position-absolute top-1/2 end-0 translate-middle p-1">0</span>
+                            </i> Cart
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link position-relative">
+                            <i class="fas fa-user"></i> Profile
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container py-5">
+        <!-- Loading State -->
+        <div id="loading-state" class="loading">
+            <i class="fas fa-spinner fa-spin fa-3x text-muted"></i>
+            <h4 class="mt-3">Processing your order...</h4>
+        </div>
+
+        <!-- Error State -->
+        <div id="error-state" class="error-state" style="display: none;">
+            <i class="fas fa-exclamation-triangle fa-3x text-warning"></i>
+            <h4 class="mt-3">Order information not found</h4>
+            <p>We couldn't find your order details.</p>
+            <a href="index.html" class="btn btn-eco">Back to Home</a>
+        </div>
+
+        <!-- Order Confirmation Content -->
+        <div id="confirmation-content" style="display: none;">
+            <!-- Success Header -->
+            <div class="success-header">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1 class="mb-3">Order Confirmed!</h1>
+                <p class="lead mb-4">Thank you for choosing eco-friendly products!</p>
+                <div class="order-number" id="order-number">
+                    Order #ECO123456
+                </div>
+                <p class="mt-3 text-muted">
+                    A confirmation email has been sent to <span id="customer-email" class="fw-bold"></span>
+                </p>
+            </div>
+
+            <div class="row">
+                <!-- Order Details -->
+                <div class="col-lg-8">
+                    <!-- Order Summary -->
+                    <div class="info-card">
+                        <h4 class="mb-3">
+                            <i class="fas fa-receipt text-success"></i>
+                            Order Summary
+                        </h4>
+                        <div id="order-items-container">
+                            <!-- Order items will be populated here -->
+                        </div>
+
+                        <!-- Price Breakdown -->
+                        <div class="border-top pt-3 mt-3">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Subtotal:</span>
+                                        <span id="order-subtotal">₹0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Shipping:</span>
+                                        <span id="order-shipping">₹0.00</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Tax:</span>
+                                        <span id="order-tax">₹0.00</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between total-amount">
+                                        <strong>Total:</strong>
+                                        <strong id="order-total">₹0.00</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipping Information -->
+                    <div class="info-card">
+                        <h4 class="mb-3">
+                            <i class="fas fa-truck text-success"></i>
+                            Shipping Information
+                        </h4>
+                        <div id="shipping-address">
+                            <!-- Shipping address will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Environmental Impact -->
+                    <div class="eco-impact">
+                        <h4 class="mb-3">
+                            <i class="fas fa-leaf text-success"></i>
+                            Your Environmental Impact
+                        </h4>
+                        <p class="mb-3">By choosing eco-friendly products, you're making a positive difference!</p>
+                        <div class="row" id="eco-stats">
+                            <div class="col-md-4 impact-stat">
+                                <div class="impact-number" id="plastic-saved">0</div>
+                                <small class="text-muted">Plastic items avoided</small>
+                            </div>
+                            <div class="col-md-4 impact-stat">
+                                <div class="impact-number" id="co2-saved">0 lbs</div>
+                                <small class="text-muted">CO2 emissions reduced</small>
+                            </div>
+                            <div class="col-md-4 impact-stat">
+                                <div class="impact-number" id="trees-helped">0</div>
+                                <small class="text-muted">Trees helped</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Delivery & Action Buttons -->
+                <div class="col-lg-4">
+                    <!-- Delivery Information -->
+                    <div class="delivery-info">
+                        <h5 class="mb-3">
+                            <i class="fas fa-calendar-alt"></i>
+                            Estimated Delivery
+                        </h5>
+                        <div class="text-center">
+                            <div class="display-6 fw-bold mb-2" id="delivery-date">
+                                Dec 20-22
+                            </div>
+                            <p class="mb-0">We'll send tracking info soon!</p>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="d-grid gap-2 mt-4">
+                        <a href="index.html" class="btn btn-eco btn-lg">
+                            <i class="fas fa-shopping-bag"></i>
+                            Continue Shopping
+                        </a>
+                    </div>
+
+                    <!-- Customer Support -->
+                    <div class="info-card mt-4">
+                        <h6 class="mb-3">Need Help?</h6>
+                        <p class="small text-muted mb-2">
+                            <i class="fas fa-envelope me-2"></i>
+                            support@ecokart.com
+                        </p>
+                        <p class="small text-muted mb-2">
+                            <i class="fas fa-phone me-2"></i>
+                            +91-12345-67890
+                        </p>
+                        <p class="small text-muted mb-0">
+                            <i class="fas fa-clock me-2"></i>
+                            Mon-Fri 11AM-6PM IST
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-light py-4">
+        <div class="container text-center">
+            <p class="mb-0 text-muted footer">
+                © 2025 EcoKart. Making the world greener, one product at a time.
+            </p>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+    <script src="js/order-confirmation.js"></script>
+</body>
+
+</html>
