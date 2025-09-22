@@ -4,6 +4,7 @@
     --eco-light-green: #dcfce7;
 }
 
+/* Navbar */
 .navbar-brand {
     font-weight: bold;
     /* color: var(--eco-dark-green) !important; */
@@ -157,6 +158,46 @@
     transform: translate(9px, -60%) !important;
 }
 
+/* Subscribe */
+.subscribe-section {
+    background: var(--eco-light-green);
+    padding: 3rem 1rem;
+}
+
+.subscribe-section h1 {
+    color: #2d6a4f;
+    font-weight: 600;
+}
+
+.subscribe-section p {
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.subscription-form input[type="email"] {
+    border: 1px solid #ccc;
+    border-radius: 0.375rem 0 0 0.375rem;
+    padding: 0.75rem 1rem;
+    flex: 1;
+}
+
+.subscription-form button {
+    border-radius: 0 0.375rem 0.375rem 0;
+    font-weight: 500;
+}
+
+.subscribe {
+    background: linear-gradient(135deg, var(--eco-light-green), #f0fdf4);
+}
+
+.social-links a,
+.text-secondary {
+    color: #064e3b !important;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+/* Footer */
 .footer {
     color: #064e3b !important;
 }
