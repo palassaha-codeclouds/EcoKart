@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="css/product.css" rel="stylesheet">
 </head>
+
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
@@ -40,6 +42,14 @@
                                     class="badge bg-success rounded-pill position-absolute top-1/2 end-0 translate-middle p-1">0</span>
                             </i>
                             <span class="d-lg-none ms-1">Cart</span>
+                        </a>
+                    </li>
+                    <!-- Wishlist -->
+                    <li class="nav-item me-3">
+                        <a class="nav-link position-relative" data-bs-toggle="offcanvas"
+                            data-bs-target="#wishlistOffcanvas">
+                            <i class="fas fa-heart"></i>
+                            <span class="d-lg-none ms-1">Wishlist</span>
                         </a>
                     </li>
                     <!-- Profile -->
@@ -81,8 +91,11 @@
         <div id="product-content" style="display: none;">
             <div class="row">
                 <!-- Product Image -->
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-6 mb-4 position-relative">
                     <img id="product-image" src="" alt="" class="detail-image shadow">
+
+                    <!-- Heart Icon for Wishlist -->
+                    <i id="wishlist-btn" class="fas fa-heart wishlist-icon"></i>
                 </div>
 
                 <!-- Product Information -->
@@ -90,46 +103,53 @@
                     <div class="ps-lg-4">
                         <!-- Category Badge -->
                         <span id="product-category" class="product-category mb-3"></span>
-                        
+
                         <!-- Product Name -->
                         <h1 id="product-name" class="mb-3"></h1>
-                        
+
                         <!-- Product Description -->
                         <p id="product-description" class="text-muted mb-4 lead"></p>
-                        
+
                         <!-- Price -->
                         <div id="product-price" class="product-price mb-4"></div>
-                        
+
                         <!-- Quantity Selector -->
                         <div class="quantity-controls mb-4">
                             <label class="fw-bold">Quantity:</label>
                             <button id="decrease-btn" class="quantity-btn" onclick="updateQuantity(-1)">
                                 <i class="fas fa-minus"></i>
                             </button>
-                            <input type="number" id="quantity-input" class="quantity-input" value="1" min="1" max="10" readonly>
+                            <input type="number" id="quantity-input" class="quantity-input" value="1" min="1" max="10"
+                                readonly>
                             <button id="increase-btn" class="quantity-btn" onclick="updateQuantity(1)">
                                 <i class="fas fa-plus"></i>
                             </button>
                         </div>
-                        
+
                         <!-- Add to Cart Button -->
                         <div class="d-grid gap-3">
-                            <button id="add-to-cart-btn" class="btn btn-eco btn-lg py-3" onclick="addToCartWithQuantity()">
+                            <button id="add-to-cart-btn" class="btn btn-eco btn-lg py-3"
+                                onclick="addToCartWithQuantity()">
                                 <i class="fas fa-cart-plus"></i> Add to Cart
                             </button>
-                            <button class="btn btn-outline-secondary btn-lg" onclick="window.location.href='index.html'">
+                            <button class="btn btn-outline-secondary btn-lg"
+                                onclick="window.location.href='index.html'">
                                 <i class="fas fa-shopping-bag"></i> Continue Shopping
                             </button>
                         </div>
-                        
+
                         <!-- Product Features -->
                         <div class="mt-5">
                             <h5 class="mb-3">Why Choose Eco-Friendly?</h5>
                             <ul class="list-unstyled">
-                                <li class="mb-2"><i class="fas fa-leaf text-success me-2"></i> Environmentally sustainable</li>
-                                <li class="mb-2"><i class="fas fa-recycle text-success me-2"></i> Made from recycled/renewable materials</li>
-                                <li class="mb-2"><i class="fas fa-heart text-success me-2"></i> Safe for you and your family</li>
-                                <li class="mb-2"><i class="fas fa-globe text-success me-2"></i> Reduces plastic waste</li>
+                                <li class="mb-2"><i class="fas fa-leaf text-success me-2"></i> Environmentally
+                                    sustainable</li>
+                                <li class="mb-2"><i class="fas fa-recycle text-success me-2"></i> Made from
+                                    recycled/renewable materials</li>
+                                <li class="mb-2"><i class="fas fa-heart text-success me-2"></i> Safe for you and your
+                                    family</li>
+                                <li class="mb-2"><i class="fas fa-globe text-success me-2"></i> Reduces plastic waste
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -195,9 +215,36 @@
         </div>
     </footer>
 
+    <!-- Wishlist Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="wishlistOffcanvas">
+        <div class="offcanvas-header border-bottom py-3">
+            <h5 class="offcanvas-title fw-bold d-flex align-items-center mb-0" style="font-size: 1.25rem;">
+                <i class="fas fa-heart text-danger me-2" style="font-size: 1.4rem;"></i>
+                <span class="text-dark">My Wishlist</span>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+
+            <!-- Wishlist Items -->
+            <div id="wishlist-items" class="list-group flex-grow-1 overflow-auto p-2">
+                <!-- Items will be injected dynamically -->
+            </div>
+
+            <!-- Go to Cart Button -->
+            <div class="p-3 border-top">
+                <button class="btn btn-success w-100 d-flex align-items-center justify-content-center py-1"
+                    onclick="goToCart()">
+                    <i class="fas fa-shopping-cart me-2"></i> Checkout All
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
-    
+
     <script src="js/product.js"></script>
 </body>
+
 </html>
