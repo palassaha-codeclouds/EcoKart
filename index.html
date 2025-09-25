@@ -37,7 +37,7 @@
                     <!-- About -->
                     <li class="nav-item me-3">
                         <a class="nav-link position-relative" href="#about">
-                            <i class="fas fa-info-circle"></i> 
+                            <i class="fas fa-info-circle"></i>
                             <span class="d-lg-none ms-1">About Us</span>
                         </a>
                     </li>
@@ -51,6 +51,15 @@
                             <span class="d-lg-none ms-1">Cart</span>
                         </a>
                     </li>
+                    <!-- Wishlist -->
+                    <li class="nav-item me-3">
+                        <a class="nav-link position-relative" data-bs-toggle="offcanvas"
+                            data-bs-target="#wishlistOffcanvas">
+                            <i class="fas fa-heart"></i>
+                            <span class="d-lg-none ms-1">Wishlist</span>
+                        </a>
+                    </li>
+
                     <!-- Profile -->
                     <li class="nav-item me-3">
                         <a class="nav-link position-relative">
@@ -78,7 +87,7 @@
         </div>
     </section>
 
-<!-- Featured Products -->
+    <!-- Featured Products -->
     <section id="featured-products-section" class="py-5">
         <div class="container">
             <div class="row mb-4">
@@ -174,8 +183,7 @@
 
                 <!-- Right Image -->
                 <div class="right-image col-md-5 text-center">
-                    <img src="assets/about_us.jpg" alt="EcoKart About Us"
-                        class="img-fluid rounded shadow" />
+                    <img src="assets/about_us.jpg" alt="EcoKart About Us" class="img-fluid rounded shadow" />
                 </div>
             </div>
         </div>
@@ -289,6 +297,32 @@
             </p>
         </div>
     </footer>
+
+    <!-- Wishlist Offcanvas -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="wishlistOffcanvas">
+        <div class="offcanvas-header border-bottom py-3">
+            <h5 class="offcanvas-title fw-bold d-flex align-items-center mb-0" style="font-size: 1.25rem;">
+                <i class="fas fa-heart text-danger me-2" style="font-size: 1.4rem;"></i>
+                <span class="text-dark">My Wishlist</span>
+            </h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+
+            <!-- Wishlist Items -->
+            <div id="wishlist-items" class="list-group flex-grow-1 overflow-auto p-2">
+                <!-- Items will be injected dynamically -->
+            </div>
+
+            <!-- Go to Cart Button -->
+            <div class="p-3 border-top">
+                <button class="btn btn-success w-100 d-flex align-items-center justify-content-center py-1"
+                    onclick="goToCart()">
+                    <i class="fas fa-shopping-cart me-2"></i> Checkout All
+                </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>

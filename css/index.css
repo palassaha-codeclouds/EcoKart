@@ -25,7 +25,7 @@
     margin: 0;
 }
 
-.hero-section > div {
+.hero-section>div {
     position: relative;
     z-index: 20;
 }
@@ -44,7 +44,7 @@
     transform: translate(9px, -60%) !important;
 }
 
-#featured-products-section h2{
+#featured-products-section h2 {
     color: #2d6a4f !important;
 }
 
@@ -58,7 +58,7 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
 
-#products-section h2{
+#products-section h2 {
     color: #2d6a4f !important;
 }
 
@@ -267,4 +267,25 @@ html {
 /* Footer */
 .footer {
     color: #064e3b !important;
+}
+
+/* Heart button on products */
+.product-card .wishlist-btn {
+    z-index: 10;
+    opacity: 0.9;
+}
+
+.product-card .wishlist-btn:hover {
+    color: #dc3545; /* Bootstrap danger red */
+}
+
+
+/* Offcanvas wishlist tweaks */
+#wishlist-items .list-group-item {
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+#wishlist-items img {
+    border-radius: 8px;
 }

@@ -1,10 +1,20 @@
 let allProducts = [];
 let filteredProducts = [];
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 
 document.addEventListener('DOMContentLoaded', function () {
     updateCartBadge();
     loadProducts();
     loadFeaturedProducts();
+    renderWishlist();
+});
+
+// Event delegation for wishlist buttons
+document.addEventListener('click', function(e) {
+    const btn = e.target.closest('.wishlist-btn');
+    if (!btn) return;
+    const productId = parseInt(btn.dataset.id);
+    toggleWishlist(productId);
 });
 
 async function loadProducts() {
@@ -47,34 +57,40 @@ function displayProducts() {
     emptyState.style.display = 'none';
     grid.style.display = 'flex';
 
-    // Product cards HTML
     grid.innerHTML = filteredProducts.map(product => `
-                <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
-                    <div class="card product-card h-100 shadow-sm">
-                        <img src="${product.image}" class="card-img-top product-image" alt="${product.name}" loading="lazy">
-                        <div class="card-body d-flex flex-column">
-                            <h5 class="card-title">${product.name}</h5>
-                            <p class="card-text text-muted flex-grow-1">${truncateText(product.description, 100)}</p>
-                            <div class="mt-auto">
-                                <div class="d-flex justify-content-between align-items-center mb-3">
-                                    <span class="h4 text-success mb-0">₹${product.price.toFixed(2)}</span>
-                                    <small class="text-muted text-capitalize">${product.category}</small>
-                                </div>
-                                <div class="d-grid gap-2">
-                                    <div class="btn-group">
-                                        <button class="btn btn-outline-primary" onclick="viewProductDetail(${product.id})">
-                                            <i class="fas fa-eye"></i> View Details
-                                        </button>
-                                        <button class="btn btn-eco" onclick="addToCart(${product.id})">
-                                            <i class="fas fa-cart-plus"></i> Add to Cart
-                                        </button>
-                                    </div>
-                                </div>
+        <div class="col-md-4 mb-4">
+            <div class="card product-card h-100 shadow-sm position-relative">
+                <!-- Wishlist Heart -->
+                <button class="btn btn-light position-absolute top-0 end-0 m-2 rounded-circle wishlist-btn"
+                        data-id="${product.id}">
+                    <i class="fas fa-heart ${wishlist.some(item => item.id === product.id) ? 'text-danger' : ''}"></i>
+                </button>
+
+                <img src="${product.image}" class="card-img-top product-image" alt="${product.name}" loading="lazy">
+
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title">${product.name}</h5>
+                    <p class="card-text text-muted flex-grow-1">${truncateText(product.description, 100)}</p>
+                    <div class="mt-auto">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="h4 text-success mb-0">₹${product.price.toFixed(2)}</span>
+                            <small class="text-muted text-capitalize">${product.category}</small>
+                        </div>
+                        <div class="d-grid gap-2">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-primary" onclick="viewProductDetail(${product.id})">
+                                    <i class="fas fa-eye"></i> View Details
+                                </button>
+                                <button class="btn btn-eco" onclick="addToCart(${product.id})">
+                                    <i class="fas fa-cart-plus"></i> Add to Cart
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
-            `).join('');
+            </div>
+        </div>
+    `).join("");
 }
 
 
@@ -94,7 +110,6 @@ async function loadFeaturedProducts() {
 
         await new Promise(resolve => setTimeout(resolve, 500));
 
-        // Pick products with featured: true
         const featuredProducts = data.products.filter(p => p.featured);
 
         loadingEl.style.display = 'none';
@@ -106,9 +121,16 @@ async function loadFeaturedProducts() {
 
         gridEl.style.display = 'flex';
         gridEl.innerHTML = featuredProducts.map(product => `
-            <div class="col-lg-4 col-md-6 col-sm-6 mb-4">
-                <div class="card product-card h-100 shadow-sm">
+            <div class="col-md-4 mb-4">
+                <div class="card product-card h-100 shadow-sm position-relative">
+                    <!-- Wishlist Heart -->
+                    <button class="btn btn-light position-absolute top-0 end-0 m-2 rounded-circle wishlist-btn"
+                            data-id="${product.id}">
+                        <i class="fas fa-heart ${wishlist.some(item => item.id === product.id) ? 'text-danger' : ''}"></i>
+                    </button>
+
                     <img src="${product.image}" class="card-img-top product-image" alt="${product.name}" loading="lazy">
+
                     <div class="card-body d-flex flex-column">
                         <h5 class="card-title">${product.name}</h5>
                         <p class="card-text text-muted flex-grow-1">${truncateText(product.description, 100)}</p>
@@ -131,7 +153,7 @@ async function loadFeaturedProducts() {
                     </div>
                 </div>
             </div>
-        `).join('');
+        `).join("");
 
     } catch (error) {
         console.error('Error loading featured products:', error);
@@ -270,4 +292,104 @@ function showAddToCartSuccess(productName) {
             container.remove();
         }
     });
+}
+
+// toggle wishlist
+function toggleWishlist(productId) {
+    const product = allProducts.find(p => p.id === productId);
+    if (!product) return;
+
+    const index = wishlist.findIndex(item => item.id === productId);
+
+    if (index > -1) {
+        wishlist.splice(index, 1);
+    } else {
+        wishlist.push(product);
+    }
+
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+    renderWishlist();
+    updateWishlistHearts(productId);
+}
+
+function updateWishlistHearts(productId) {
+    document.querySelectorAll(`.wishlist-btn`).forEach(btn => {
+        if (parseInt(btn.dataset.id) === productId) {
+            const icon = btn.querySelector("i");
+            if (wishlist.some(item => item.id === productId)) {
+                icon.classList.add("text-danger");
+            } else {
+                icon.classList.remove("text-danger");
+            }
+        }
+    });
+}
+
+function renderWishlist() {
+    const container = document.getElementById("wishlist-items");
+    container.innerHTML = "";
+
+    if (wishlist.length === 0) {
+        container.innerHTML = `
+            <p class="text-center text-muted my-3">Your wishlist is empty</p>
+        `;
+        return;
+    }
+
+    wishlist.forEach(product => {
+        const item = document.createElement("div");
+        item.className = "list-group-item d-flex align-items-center justify-content-between py-2";
+
+        item.innerHTML = `
+            <div class="d-flex align-items-center" style="cursor:pointer; max-width: 200px; gap: 0.5rem;" onclick="viewProductDetail(${product.id})">
+                <img src="${product.image}" alt="${product.name}" 
+                     class="rounded"
+                     style="width: 50px; height: 50px; object-fit: cover;">
+                <span class="fw-semibold" style="max-width: 140px; word-wrap: break-word;">${product.name}</span>
+            </div>
+            <div class="d-flex gap-1">
+                <button class="btn btn-sm btn-outline-success px-2 py-1" style="max-width: 80px;" onclick="addToCart(${product.id})">
+                    <i class="fas fa-cart-plus"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger px-2 py-1" style="max-width: 80px;" onclick="toggleWishlist(${product.id})">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        `;
+        container.appendChild(item);
+    });
+}
+
+
+// wishlist -> cart
+function goToCart() {
+    // Get wishlist and cart from localStorage
+    const wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    wishlist.forEach(product => {
+        const index = cart.findIndex(item => item.id === product.id);
+        if (index > -1) {
+            cart[index].quantity += 1; // increase quantity if already in cart
+        } else {
+            cart.push({
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                image: product.image,
+                category: product.category,
+                quantity: 1
+            });
+        }
+    });
+
+    // Save updated cart
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    // Optional: clear wishlist after moving items
+    localStorage.setItem("wishlist", JSON.stringify([]));
+
+    // Redirect to cart page
+    window.location.href = 'checkout.html';
 }
